@@ -10,6 +10,7 @@ public class BookContent : MonoBehaviour
     public GameObject readingBox;
 
     public TextMeshProUGUI readingBoxText;
+    string[] chapters;
     int location = 0;
     int conversion = 0;
     public bool selected = false;
@@ -20,25 +21,29 @@ public class BookContent : MonoBehaviour
     private void OnEnable()
     {
 
-
+        ReadTextFile();
         switch (location)
         {
-            case 0: UpdateText(forward); break;
+            case 0: UpdateText(chapters[8]); break;
         }
         //SetConversion();
     }
     void Start()
     {
-        ReadTextFile();
+        
 
     }
     private void ReadTextFile()
     {
-        StreamReader streamReader = new StreamReader("/Book/BB.txt");
+        StreamReader streamReader = new StreamReader("Assets/Book/BB.txt");
         string BBRaw = streamReader.ReadToEnd();
+        streamReader.Close();
 
+        chapters = BBRaw.Split("{{Chapter}}");
+       
 
     }
+
     void Update()
     {
 
@@ -46,6 +51,8 @@ public class BookContent : MonoBehaviour
     private void UpdateText(string text)
     {
         readingBoxText.text = ConvertText(text);
+      
+
     }
     private string ConvertText(string text)
     {
@@ -56,6 +63,7 @@ public class BookContent : MonoBehaviour
         string word4 = "";
         string word5 = "";
         string word6 = "";
+        string word7 = "";
         switch (conversion)
         {
             case 0:
@@ -66,8 +74,8 @@ public class BookContent : MonoBehaviour
                     word4 = "Alcoholics Anonymous";
                     word5 = "drinking";
                     word6 = "alcohol";
-
-
+                    word7 = "drinkers";
+                    
                 }
 
                 break;
@@ -79,18 +87,19 @@ public class BookContent : MonoBehaviour
                     word4 = "SAA";
                     word5 = "acting out";
                     word6 = "selfish sex";
-
-
+                    word7 = "addicts";
                 }
 
                 break;
 
         }
-        converted = text.Replace("[alcoholics]", word1);
-        converted = converted.Replace("[alcoholic]", word2);
-        converted = converted.Replace("[alcoholism]", word3);
-        converted = converted.Replace("[Alcoholics Anonymous]", word4);
-        converted = converted.Replace("[drinking]", word5);
+        converted = text.Replace("$alcoholics", word1);
+        converted = converted.Replace("$alcoholic", word2);
+        converted = converted.Replace("$alcoholism", word3);
+        converted = converted.Replace("$Alcoholics-Anonymous", word4);
+        converted = converted.Replace("$drinking", word5);
+        converted = converted.Replace("$drinking", word6);
+        converted = converted.Replace("$drinking", word7);
 
 
         return converted;
