@@ -18,8 +18,10 @@ namespace BookMechanics
 
         private void OnEnable()
         {
-            SetConversion(dropdown.value);
-            ChangeChapter(chapter);
+            //SetConversion(dropdown.value);
+            //ChangeChapter(chapter);
+            readingBoxText.text = loadingScript.chapters[0];
+           
         }
         private void UpdateText(string text)
         {

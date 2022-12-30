@@ -8,6 +8,7 @@ namespace BookMechanics
     public class InitialLoadingScript : MonoBehaviour
     {
         public string[] chapters;
+        [SerializeField] private BookContentWithExamples Parser; 
         private void OnEnable()
         {
             ReadTextFile();
@@ -19,6 +20,18 @@ namespace BookMechanics
             streamReader.Close();
 
             chapters = BBRaw.Split("{{Chapter}}");
+            SetUpWordMapping();
+        }
+
+        private void SetUpWordMapping() 
+        {
+            Parser.AddWordMapping(BookContentWithExamples.EWordMapping.Alcohol);
+            for(int i = 0; i<chapters.Length; ++i )
+            {
+                chapters[i] = Parser.ConvertAllReplaceableWords(chapters[i]);
+            }
+        
+        
         }
     }
 }

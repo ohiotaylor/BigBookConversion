@@ -1,12 +1,9 @@
+////////////////// Example Code needs these using statements
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.IO;
-
-////////////////// Example Code needs these using statements
-
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
@@ -25,7 +22,12 @@ public class BookContentWithExamples : MonoBehaviour
 		God
 	}
 
-	public string ReplaceableAllWords(string input)
+	/// <summary>
+	/// This function will convert all replaceable words with the appropriate word provided by currentWordMapping.
+	/// </summary>
+	/// <param name="input">This is the string you want to convert.</param>
+	/// <returns>The converted string.</returns>
+	public string ConvertAllReplaceableWords(string input)
 	{
 		/// We're using regular expressions to find all words that start with [ and end with ] because these are the replaceable words.
 		/// The @" and closing " means C# interprets the entire thing as a literal string without worrying about escape characters which is helpful when building regular expressions.
@@ -34,7 +36,7 @@ public class BookContentWithExamples : MonoBehaviour
 		/// The \w means a word character, with the following + meaning one or more of the word characters.
 		/// We have to escape the ] with a \ so that the regular expression doesn't interpret it as a grouping metacharacter, only as a literal bracket.
 		/// /// The final \b also means a word boundary.
-		string replaceableWordPattern = @"\b\[[\w\s]+\]\b";
+		string replaceableWordPattern = @"\$\$.*?\$\$";
 
 		/// This creates a delegate that we will use to dynamically replace all the replaceable words
 		MatchEvaluator ReplaceWordEvaluator = new MatchEvaluator(ReplaceWord);
@@ -60,7 +62,7 @@ public class BookContentWithExamples : MonoBehaviour
 			/// This should never happen during runtime. This is to catch any missing entries you may have forgotten during development.
 			UnityEngine.Debug.LogError($"There is a missing entry for the word mapping: {match.Value}\nEnsure all replaceable words has a matching entry!");
             UnityEngine.Debug.LogException(e, this);
-			return "error ln175";
+			throw;
 		}
 	}
 
@@ -81,16 +83,16 @@ public class BookContentWithExamples : MonoBehaviour
 		switch (mappingContext)
 		{
 			case EWordMapping.Alcohol:
-				ExtractWordMapping(Application.persistentDataPath + "/Alcohol.txt");
+				ExtractWordMapping("Assets/Book/Alcohol.txt");
 				break;
 			case EWordMapping.Sex:
-				ExtractWordMapping(Application.persistentDataPath + "/Sex.txt");
+				ExtractWordMapping("Assets/Book/Sex.txt");
 				break;
 			case EWordMapping.Gambling:
-				ExtractWordMapping(Application.persistentDataPath + "/Gambling.txt");
+				ExtractWordMapping("Assets/Book/Gambling.txt");
 				break;
 			case EWordMapping.God:
-				ExtractWordMapping(Application.persistentDataPath + "/God.txt");
+				ExtractWordMapping("Assets/Book/God.txt");
 				break;
 			default:
 				/// This should never happen during runtime. This is to catch any missing mapping contexts you may have forgotten to add to the switch statement during development.
@@ -113,6 +115,8 @@ public class BookContentWithExamples : MonoBehaviour
 		string mappingEntriesRaw = reader.ReadToEnd();
 		/// Close the reader because we do not need it anymore.
 		reader.Close();
+		if (currentWordMapping == null)
+			currentWordMapping = new Dictionary<string, string>();
 
 		
 		
@@ -125,7 +129,7 @@ public class BookContentWithExamples : MonoBehaviour
 		/// the \w means a word character. The + following it means one or more.
 		/// The \ escapes the ] so that the regular expression will interpret it as a literal bracket instead of a grouping metacharacter.
 		/// The final (\w+) is the second capture group (so index 1) that will match one or more word characters.
-		Regex mappingEntryRegex = new Regex(@"\b\(\[[\w\s]+\]) : ([\w\s]+)", RegexOptions.Compiled);
+		Regex mappingEntryRegex = new Regex(@"(\$\$.*?\$\$) : (.*?)\s+$", RegexOptions.Compiled);
 		/// Find all the matches in the string.
 		MatchCollection mappingEntries = mappingEntryRegex.Matches(mappingEntriesRaw);
 		/// Iterate through all the matches in the string.
@@ -134,16 +138,10 @@ public class BookContentWithExamples : MonoBehaviour
 			/// Find all the capture groups in each match. We had 2 in the regular expression.
 			GroupCollection groups = mappingEntry.Groups;
 			/// Add the first capture group which contains [ReplaceableWord] as a key, and the second capture group which contains the new word as the value.
-			currentWordMapping.Add(groups[0].Value, groups[1].Value);
+			currentWordMapping.Add(groups[1].Value, groups[2].Value);
 		}
 		
 	}
 
-/////////////////////// End of Example Code
-///
-
-
-
-
+/////////////////////// End of Example Code ///////////////////////////////////
 }
-
