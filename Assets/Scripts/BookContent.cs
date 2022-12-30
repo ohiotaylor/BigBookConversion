@@ -82,29 +82,29 @@ namespace BookMechanics
         {
             chapter = num;
 
-            int bottonLength = -10000;
+            int bottomLength = -10000;
             switch (chapter)
             {
                 case 0:
-                    bottonLength = -11500;
+                    bottomLength = -11500;
                     break;
                 case 1:
-                    bottonLength = -13000;
+                    bottomLength = -13000;
                     break;
                 case 2:
-                    bottonLength = -14500;
+                    bottomLength = -14500;
                     break;
                 case 3:
-                    bottonLength = -14000;
+                    bottomLength = -14000;
                     break;
                 case 4:
-                    bottonLength = -14500;
+                    bottomLength = -14500;
                     break;
                 case 5:
-                    bottonLength = -13000;
+                    bottomLength = -13000;
                     break;
             }
-            readingBoxText.rectTransform.SetBottom(bottonLength);
+            readingBoxText.rectTransform.SetBottom(bottomLength);
             UpdateText(loadingScript.chapters[chapter]);
            
         }
