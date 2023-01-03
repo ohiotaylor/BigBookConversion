@@ -8,10 +8,21 @@ namespace BookMechanics
     public class InitialLoadingScript : MonoBehaviour
     {
         public string[] chapters;
-        [SerializeField] private BookContentWithExamples Parser; 
+        [SerializeField] private BookContentWithExamples Parser;
+        BookContentWithExamples.EWordMapping fellowship;
+        BookContentWithExamples.EWordMapping god;
+        BookContentWithExamples.EWordMapping sex;
         private void OnEnable()
         {
+            GrabUserSettings();
             ReadTextFile();
+        }
+
+        private void GrabUserSettings()
+        {
+            fellowship = BookContentWithExamples.EWordMapping.Sex;
+            god = BookContentWithExamples.EWordMapping.God;
+            sex = BookContentWithExamples.EWordMapping.Male;
         }
         private void ReadTextFile()
         {
@@ -20,13 +31,17 @@ namespace BookMechanics
             streamReader.Close();
 
             chapters = BBRaw.Split("{{Chapter}}");
-            SetUpWordMapping();
+
+            SetUpWordMapping(fellowship, god, sex);
         }
 
-        private void SetUpWordMapping() 
+        private void SetUpWordMapping(BookContentWithExamples.EWordMapping EWMfellowship, BookContentWithExamples.EWordMapping EWMgod, BookContentWithExamples.EWordMapping EWMsex) 
         {
             Parser.AddWordMapping(BookContentWithExamples.EWordMapping.Alcohol);
-            for(int i = 0; i<chapters.Length; ++i )
+            Parser.AddWordMapping(EWMfellowship);
+            Parser.AddWordMapping(EWMgod);
+            Parser.AddWordMapping(EWMsex);
+            for (int i = 0; i<chapters.Length; ++i )
             {
                 chapters[i] = Parser.ConvertAllReplaceableWords(chapters[i]);
             }

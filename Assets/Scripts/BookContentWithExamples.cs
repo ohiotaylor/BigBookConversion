@@ -19,7 +19,17 @@ public class BookContentWithExamples : MonoBehaviour
 		Alcohol,
 		Sex,
 		Gambling,
-		God
+		God,
+		Jesus,
+		Krishna,
+		SpiritOfTheUniverse,
+		Earth,
+		Allah,
+		Buddha,
+		Male,
+		Female,
+		NonBionary
+
 	}
 
 	/// <summary>
@@ -86,13 +96,40 @@ public class BookContentWithExamples : MonoBehaviour
 				ExtractWordMapping("Assets/Book/Alcohol.txt");
 				break;
 			case EWordMapping.Sex:
-				ExtractWordMapping("Assets/Book/Sex.txt");
+				ExtractWordMapping("Assets/Book/SAA.txt");
 				break;
 			case EWordMapping.Gambling:
 				ExtractWordMapping("Assets/Book/Gambling.txt");
 				break;
 			case EWordMapping.God:
 				ExtractWordMapping("Assets/Book/God.txt");
+				break;
+			case EWordMapping.Jesus:
+				ExtractWordMapping("Assets/Book/Jesus.txt");
+				break;
+			case EWordMapping.Krishna:
+				ExtractWordMapping("Assets/Book/Krishna.txt");
+				break;
+			case EWordMapping.SpiritOfTheUniverse:
+				ExtractWordMapping("Assets/Book/SpiritOfTheUniverse.txt");
+				break;
+			case EWordMapping.Earth:
+				ExtractWordMapping("Assets/Book/Earth.txt");
+				break;
+			case EWordMapping.Allah:
+				ExtractWordMapping("Assets/Book/Allah.txt");
+				break;
+			case EWordMapping.Buddha:
+				ExtractWordMapping("Assets/Book/Buddha.txt");
+				break;
+			case EWordMapping.Male:
+				ExtractWordMapping("Assets/Book/Male.txt");
+				break;
+			case EWordMapping.Female:
+				ExtractWordMapping("Assets/Book/Female.txt");
+				break;
+			case EWordMapping.NonBionary:
+				ExtractWordMapping("Assets/Book/NonBionary.txt");
 				break;
 			default:
 				/// This should never happen during runtime. This is to catch any missing mapping contexts you may have forgotten to add to the switch statement during development.
