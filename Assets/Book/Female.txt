@@ -1,0 +1,16 @@
+$$man$$ : woman
+$$Man$$ : Woman
+$$men$$ : women
+$$Men$$ : Women
+$$he$$ : she
+$$He$$ : She
+$$him$$ : her
+$$Him$$ : Her
+$$his$$ : her
+$$His$$ : Her
+$$wife$$ : husband
+$$Wife$$ : Husband
+$$her$$ : him
+$$Her$$ : Him
+$$she$$ : he
+$$She$$ : He

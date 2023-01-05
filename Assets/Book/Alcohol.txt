@@ -6,8 +6,8 @@ $$alcoholic$$ : alcoholic
 $$Alcoholic$$ : Alcoholic
 $$alcoholism$$ : alcoholism
 $$Alcoholism$$ : Alcoholism
-$$Alcoholics-Anonymous$$ : Alcoholics Anonymous
 $$drinking$$ : drinking
 $$Drinking$$ : Drinking
 $$drinkers$$ : drinkers
 $$Drinkers$$ : Drinkers
+$$Alcoholics Anonymous$$ : Alcoholics Anonymous

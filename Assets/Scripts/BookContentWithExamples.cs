@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Text.RegularExpressions;
+
 using System.Diagnostics;
 
 ////////////////// End of using statements for example code 
@@ -17,7 +18,7 @@ public class BookContentWithExamples : MonoBehaviour
 	public enum EWordMapping
 	{
 		Alcohol,
-		Sex,
+		SAA,
 		Gambling,
 		God,
 		Jesus,
@@ -95,7 +96,7 @@ public class BookContentWithExamples : MonoBehaviour
 			case EWordMapping.Alcohol:
 				ExtractWordMapping("Assets/Book/Alcohol.txt");
 				break;
-			case EWordMapping.Sex:
+			case EWordMapping.SAA:
 				ExtractWordMapping("Assets/Book/SAA.txt");
 				break;
 			case EWordMapping.Gambling:
@@ -166,7 +167,7 @@ public class BookContentWithExamples : MonoBehaviour
 		/// the \w means a word character. The + following it means one or more.
 		/// The \ escapes the ] so that the regular expression will interpret it as a literal bracket instead of a grouping metacharacter.
 		/// The final (\w+) is the second capture group (so index 1) that will match one or more word characters.
-		Regex mappingEntryRegex = new Regex(@"(\$\$.*?\$\$) : (.*?)\s+$", RegexOptions.Compiled);
+		Regex mappingEntryRegex = new Regex(@"(\$\$.*?\$\$) : (.*?)\r*$", RegexOptions.Compiled | RegexOptions.Multiline);
 		/// Find all the matches in the string.
 		MatchCollection mappingEntries = mappingEntryRegex.Matches(mappingEntriesRaw);
 		/// Iterate through all the matches in the string.
@@ -175,10 +176,19 @@ public class BookContentWithExamples : MonoBehaviour
 			/// Find all the capture groups in each match. We had 2 in the regular expression.
 			GroupCollection groups = mappingEntry.Groups;
 			/// Add the first capture group which contains [ReplaceableWord] as a key, and the second capture group which contains the new word as the value.
-			currentWordMapping.Add(groups[1].Value, groups[2].Value);
+			
+			if(!currentWordMapping.ContainsKey(groups[1].Value))
+				currentWordMapping.Add(groups[1].Value, groups[2].Value);
+            else
+                currentWordMapping[groups[1].Value] = groups[2].Value;
 		}
 		
 	}
 
-/////////////////////// End of Example Code ///////////////////////////////////
+    private void UpdateConversion()
+    {
+        
+    }
+
+    /////////////////////// End of Example Code ///////////////////////////////////
 }

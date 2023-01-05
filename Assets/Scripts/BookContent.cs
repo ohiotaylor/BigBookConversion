@@ -25,56 +25,7 @@ namespace BookMechanics
         }
         private void UpdateText(string text)
         {
-            readingBoxText.text = ConvertText(text);
-        }
-        private string ConvertText(string text)
-        {
-            string converted = "";
-            string word1 = "";
-            string word2 = "";
-            string word3 = "";
-            string word4 = "";
-            string word5 = "";
-            string word6 = "";
-            string word7 = "";
-            switch (conversion)
-            {
-                case 0:
-                    {
-                        word1 = "alcoholics";
-                        word2 = "alcoholic";
-                        word3 = "alcoholism";
-                        word4 = "Alcoholics Anonymous";
-                        word5 = "drinking";
-                        word6 = "alcohol";
-                        word7 = "drinkers";
-
-                    }
-
-                    break;
-                case 1:
-                    {
-                        word1 = "sex addicts";
-                        word2 = "sex addict";
-                        word3 = "sex addiction";
-                        word4 = "SAA";
-                        word5 = "acting out";
-                        word6 = "selfish sex";
-                        word7 = "addicts";
-                    }
-
-                    break;
-
-            }
-            converted = text.Replace("$alcoholics", word1);
-            converted = converted.Replace("$alcoholic", word2);
-            converted = converted.Replace("$alcoholism", word3);
-            converted = converted.Replace("$Alcoholics-Anonymous", word4);
-            converted = converted.Replace("$drinking", word5);
-            converted = converted.Replace("$drinking", word6);
-            converted = converted.Replace("$drinking", word7);
-
-            return converted;
+            readingBoxText.text = text;
         }
         public void SetConversion(int conv)
         {
