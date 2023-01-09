@@ -1,0 +1,16 @@
+$$man$$ : man
+$$Man$$ : Man
+$$men$$ : men
+$$Men$$ : Men
+$$he$$ : he
+$$He$$ : He
+$$him$$ : him
+$$Him$$ : Him
+$$his$$ : his
+$$His$$ : His
+$$wife$$ : wife
+$$Wife$$ : Wife
+$$her$$ : her
+$$Her$$ : Her
+$$she$$ : she
+$$She$$ : She

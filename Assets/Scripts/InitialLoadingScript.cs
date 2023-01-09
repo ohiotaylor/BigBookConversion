@@ -16,9 +16,12 @@ namespace BookMechanics
         [SerializeField] private TMP_Dropdown fellowshipDropdown;
         [SerializeField] private TMP_Dropdown godDropdown;
         [SerializeField] private TMP_Dropdown sexDropdown;
+        [SerializeField] TextAsset bigBook;
+        [SerializeField] TextAsset bigbook;
 
         private void OnEnable()
         {
+            //bigBook = Resources.Load<TextAsset>("Book/BB.txt");
             LoadSettings();
             ReadTextFile();
         }
@@ -103,11 +106,12 @@ namespace BookMechanics
         }
         private void ReadTextFile()
         {
-            StreamReader streamReader = new StreamReader("Assets/Book/BB.txt");
+            //TextAsset bigBook = Resources.Load<TextAsset>("Book/BB.txt");
+            StreamReader streamReader = new StreamReader(new MemoryStream(bigBook.bytes));
             string BBRaw = streamReader.ReadToEnd();
             streamReader.Close();
-
-            chapters = BBRaw.Split("{{Chapter}}");
+            
+            chapters = bigBook.text.Split("{{Chapter}}");
 
             SetUpWordMapping(fellowship, god, sex);
         }

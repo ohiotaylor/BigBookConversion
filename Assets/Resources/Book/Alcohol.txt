@@ -1,0 +1,13 @@
+$$alcohol$$ : alcohol
+$$Alcohol$$ : Alcohol
+$$Alcoholics$$ : Alcoholics
+$$alcoholics$$ : alcoholics
+$$alcoholic$$ : alcoholic
+$$Alcoholic$$ : Alcoholic
+$$alcoholism$$ : alcoholism
+$$Alcoholism$$ : Alcoholism
+$$drinking$$ : drinking
+$$Drinking$$ : Drinking
+$$drinkers$$ : drinkers
+$$Drinkers$$ : Drinkers
+$$Alcoholics Anonymous$$ : Alcoholics Anonymous

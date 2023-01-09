@@ -14,6 +14,20 @@ using System.Diagnostics;
 public class BookContentWithExamples : MonoBehaviour
 {
 	private Dictionary<string, string> currentWordMapping;
+	[SerializeField] TextAsset Alcohol;
+	[SerializeField] TextAsset SAA; 
+	[SerializeField] TextAsset Gambling;
+	[SerializeField] TextAsset God;
+	[SerializeField] TextAsset Jesus;
+	[SerializeField] TextAsset Krishna;
+	[SerializeField] TextAsset SpiritOfTheUniverse;
+	[SerializeField] TextAsset Earth;
+	[SerializeField] TextAsset Allah;
+	[SerializeField] TextAsset Buddha;
+	[SerializeField] TextAsset Male;
+	[SerializeField] TextAsset Female;
+	[SerializeField] TextAsset NonBionary;
+
 
 	public enum EWordMapping
 	{
@@ -93,44 +107,45 @@ public class BookContentWithExamples : MonoBehaviour
 	{
 		switch (mappingContext)
 		{
+
 			case EWordMapping.Alcohol:
-				ExtractWordMapping("Assets/Book/Alcohol.txt");
+				ExtractWordMapping(Alcohol);
 				break;
 			case EWordMapping.SAA:
-				ExtractWordMapping("Assets/Book/SAA.txt");
+				ExtractWordMapping(SAA);
 				break;
 			case EWordMapping.Gambling:
-				ExtractWordMapping("Assets/Book/Gambling.txt");
+				ExtractWordMapping(Gambling);
 				break;
 			case EWordMapping.God:
-				ExtractWordMapping("Assets/Book/God.txt");
+				ExtractWordMapping(God);
 				break;
 			case EWordMapping.Jesus:
-				ExtractWordMapping("Assets/Book/Jesus.txt");
+				ExtractWordMapping(Jesus);
 				break;
 			case EWordMapping.Krishna:
-				ExtractWordMapping("Assets/Book/Krishna.txt");
+				ExtractWordMapping(Krishna);
 				break;
 			case EWordMapping.SpiritOfTheUniverse:
-				ExtractWordMapping("Assets/Book/SpiritOfTheUniverse.txt");
+				ExtractWordMapping(SpiritOfTheUniverse);
 				break;
 			case EWordMapping.Earth:
-				ExtractWordMapping("Assets/Book/Earth.txt");
+				ExtractWordMapping(Earth);
 				break;
 			case EWordMapping.Allah:
-				ExtractWordMapping("Assets/Book/Allah.txt");
+				ExtractWordMapping(Allah);
 				break;
 			case EWordMapping.Buddha:
-				ExtractWordMapping("Assets/Book/Buddha.txt");
+				ExtractWordMapping(Buddha);
 				break;
 			case EWordMapping.Male:
-				ExtractWordMapping("Assets/Book/Male.txt");
+				ExtractWordMapping(Male);
 				break;
 			case EWordMapping.Female:
-				ExtractWordMapping("Assets/Book/Female.txt");
+				ExtractWordMapping(Female);
 				break;
 			case EWordMapping.NonBionary:
-				ExtractWordMapping("Assets/Book/NonBionary.txt");
+				ExtractWordMapping(NonBionary);
 				break;
 			default:
 				/// This should never happen during runtime. This is to catch any missing mapping contexts you may have forgotten to add to the switch statement during development.
@@ -143,12 +158,13 @@ public class BookContentWithExamples : MonoBehaviour
 	/// This will extract the word mapping from the text file given at the path and add it to the current word mapping. The expected format (without the quotations) is: "[String To Be Replaced] : New String".
 	/// </summary>
 	/// <param name="path">The path to the text file containing the word mapping.</param>
-	private void ExtractWordMapping(string path)
+	private void ExtractWordMapping(TextAsset textAsset)
 	{
 
-		
+		//TextAsset wordMapping = Resources.Load<TextAsset>(te);
 		/// Need a stream reader to slurp in the text file.
-		StreamReader reader = new StreamReader(path);
+		//StreamReader reader = new StreamReader(path);
+		StreamReader reader = new StreamReader(new MemoryStream(textAsset.bytes));
 		/// Read the entire text file at once.
 		string mappingEntriesRaw = reader.ReadToEnd();
 		/// Close the reader because we do not need it anymore.
