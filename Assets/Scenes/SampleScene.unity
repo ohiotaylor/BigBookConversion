@@ -4312,7 +4312,7 @@ MonoBehaviour:
   m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6728,6 +6728,7 @@ MonoBehaviour:
   sexDropdown: {fileID: 1045379530}
   bigBook: {fileID: 4900000, guid: 6c9bc7e25f857ba4892610b335f68480, type: 3}
   bigbook: {fileID: 4900000, guid: 8d62730ffb5fdf74ba1c370f97ae5966, type: 3}
+  BBFull: {fileID: 4900000, guid: c028192c0b6933d47b3e23957b4f70a9, type: 3}
 --- !u!114 &1273431791
 MonoBehaviour:
   m_ObjectHideFlags: 0

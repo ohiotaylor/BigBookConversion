@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using Newtonsoft.Json;
 
 namespace BookMechanics
 {
@@ -18,12 +19,14 @@ namespace BookMechanics
         [SerializeField] private TMP_Dropdown sexDropdown;
         [SerializeField] TextAsset bigBook;
         [SerializeField] TextAsset bigbook;
+        [SerializeField] private TextAsset BBFull;
 
         private void OnEnable()
         {
             //bigBook = Resources.Load<TextAsset>("Book/BB.txt");
             LoadSettings();
             ReadTextFile();
+            LoadJSON();
         }
         private void LoadSettings()
         {
@@ -129,5 +132,33 @@ namespace BookMechanics
         
         
         }
+        
+        private void LoadJSON()
+        {
+            //StreamReader streamReader = new StreamReader(new MemoryStream(BBFull.bytes));
+            //string jsonText = streamReader.ReadToEnd();
+            //streamReader.Close();
+            //string jsonText = BBFull.text;
+            
+            GetContent data = Newtonsoft.Json.JsonConvert.DeserializeObject<GetContent>(BBFull.text);
+        }
+    }
+    [System.Serializable]
+    public class GetContent
+    {
+        BookData[] content;
+    }
+    [System.Serializable]
+    public class BookData
+    {
+        public string title;
+        public int id;
+        public Sections[] sections;
+    }
+    [System.Serializable]
+    public class Sections
+    {
+        public string title;
+        public string text;
     }
 }
