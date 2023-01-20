@@ -36,6 +36,7 @@ namespace BookMechanics
             ConvertDropdownValues();
             
         }
+        
         private void ConvertDropdownValues()
         {
             switch (fellowshipDropdown.value)
@@ -132,7 +133,6 @@ namespace BookMechanics
         
         
         }
-        
         private void LoadJSON()
         {
             //StreamReader streamReader = new StreamReader(new MemoryStream(BBFull.bytes));
@@ -146,14 +146,14 @@ namespace BookMechanics
     [System.Serializable]
     public class GetContent
     {
-        BookData[] content;
+       public List<BookData> content;
     }
     [System.Serializable]
     public class BookData
     {
         public string title;
         public int id;
-        public Sections[] sections;
+        public List<Sections> sections;
     }
     [System.Serializable]
     public class Sections
